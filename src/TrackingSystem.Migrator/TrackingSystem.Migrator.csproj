@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <AssemblyName>TrackingSystem.Migrator</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>TrackingSystem.Migrator</PackageId>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="appsettings.json;log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\src\Abp.Castle.Log4Net\Abp.Castle.Log4Net.csproj" />
+    <ProjectReference Include="..\TrackingSystem.Core\TrackingSystem.Core.csproj" />
+    <ProjectReference Include="..\TrackingSystem.EntityFrameworkCore\TrackingSystem.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+</Project>
