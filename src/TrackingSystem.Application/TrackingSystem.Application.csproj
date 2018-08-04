@@ -11,6 +11,15 @@
     <RootNamespace>TrackingSystem</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Tracking\Obd\**" />
+    <Compile Remove="Tracking\Person\**" />
+    <EmbeddedResource Remove="Tracking\Obd\**" />
+    <EmbeddedResource Remove="Tracking\Person\**" />
+    <None Remove="Tracking\Obd\**" />
+    <None Remove="Tracking\Person\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\src\Abp\Abp.csproj" />
     <ProjectReference Include="..\TrackingSystem.Core\TrackingSystem.Core.csproj" />
   </ItemGroup>
 </Project>

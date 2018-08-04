@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackingSystem.EntityFrameworkCore;
 
 namespace TrackingSystem.Migrations
 {
     [DbContext(typeof(TrackingSystemDbContext))]
-    partial class TrackingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180804120525_Added ObdMaster Table")]
+    partial class AddedObdMasterTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
