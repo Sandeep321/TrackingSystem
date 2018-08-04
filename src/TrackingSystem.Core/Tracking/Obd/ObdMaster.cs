@@ -35,9 +35,11 @@ namespace TrackingSystem.Tracking.Obd
         public ObdMaster()
         {
             CreationTime = DateTime.Now;
+            LastModificationTime = DateTime.Now;
             Type = ObdType.Default;
             IsActive = true;
             Protocol = ObdProtocol.Default;
+            TenantId = null;
         }
 
         protected ObdMaster(int? tenantId)

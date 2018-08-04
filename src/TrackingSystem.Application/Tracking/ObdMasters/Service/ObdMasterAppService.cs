@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using TrackingSystem.Tracking.ObdMasters.Dto;
 using TrackingSystem.Tracking.Tasks.Dto;
 using TrackingSystem.Tracking.Obd;
+using Abp.Authorization;
 
 namespace TrackingSystem.Tracking.Tasks.Service
 {
+    [AbpAuthorize]
     public class ObdMasterAppService : TrackingSystemAppServiceBase, IObdMasterAppService
     {
         private readonly IRepository<ObdMaster> _obdRepository;
@@ -23,6 +25,7 @@ namespace TrackingSystem.Tracking.Tasks.Service
         public async Task<ObdMaster> Create(CreateObdMasterDto input)
         {
             var task = ObjectMapper.Map<ObdMaster>(input);
+            task.CreatorUserId = task.LastModifierUserId = AbpSession.UserId.Value;           
             return await _obdRepository.InsertAsync(task);
         }
 

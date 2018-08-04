@@ -33,8 +33,6 @@ namespace TrackingSystem.Tracking.ObdMasters.Dto
         [Required]
         public ObdProtocol Protocol { get; set; }
         [Required]
-        public int? TenantId { get; set; }
-        [Required]
         public bool IsActive { get; set; }
     }
 }
