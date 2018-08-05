@@ -1,12 +1,13 @@
-﻿using Abp.AutoMapper;
+﻿using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
 using System;
 using System.ComponentModel.DataAnnotations;
 using TrackingSystem.Tracking.Obd;
 
-namespace TrackingSystem.Tracking.ObdMasters.Dto
+namespace TrackingSystem.Tracking.Tasks.Dto
 {
-    [AutoMapTo(typeof(Vehicle))]
-    public class CreateVehicleDto
+    [AutoMapFrom(typeof(VehicleData))]
+    public class VehicleDataDto : EntityDto<int>
     {
         public const int NumbersLimit = 50;
         public const int MaxDescriptionLength = 64 * 1024; //64KB
@@ -42,9 +43,9 @@ namespace TrackingSystem.Tracking.ObdMasters.Dto
 
         [MaxLength(MaxDescriptionLength)]
         public string Description { get; set; }
-        [Required]
+
         public string Type { get; set; }
-        [Required]
+        //public int? TenantId { get; set; }
         public bool IsActive { get; set; }
-    }
+    }   
 }
