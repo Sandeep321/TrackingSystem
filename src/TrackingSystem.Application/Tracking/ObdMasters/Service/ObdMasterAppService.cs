@@ -25,7 +25,7 @@ namespace TrackingSystem.Tracking.Tasks.Service
         public async Task<ObdMaster> Create(CreateObdMasterDto input)
         {
             var task = ObjectMapper.Map<ObdMaster>(input);
-            task.CreatorUserId = task.LastModifierUserId = AbpSession.UserId.Value;           
+            task.CreatorUserId = task.LastModifierUserId = AbpSession.UserId.Value;
             return await _obdRepository.InsertAsync(task);
         }
 
@@ -41,5 +41,26 @@ namespace TrackingSystem.Tracking.Tasks.Service
                 ObjectMapper.Map<List<ObdMaster>>(tasks)
             );
         }
+
+        public async Task<ObdMaster> Get(int id)
+        {
+            return await _obdRepository.GetAsync(id);
+        }
+
+        //public async Task<ObdMaster> Update(ObdMasterDto input)
+        //{
+        //    //await _obdRepository.InsertOrUpdateAndGetIdAsync(input);
+        //   var obd = await  _obdRepository.GetAsync(input.Id);
+        //    ObjectMapper.Map(input, obd);
+        //    return await _obdRepository.UpdateAsync(obd);            
+        //}
+
+        //public async Task<ObdMaster> Delete(int id)
+        //{
+        //    //await _obdRepository.InsertOrUpdateAndGetIdAsync(input);
+        //    //var obd = await _obdRepository.GetAsync(input.Id);
+        //    //ObjectMapper.Map(input, obd);
+        //    return await _obdRepository.DeleteAsync(id);
+        //}
     }
 }
