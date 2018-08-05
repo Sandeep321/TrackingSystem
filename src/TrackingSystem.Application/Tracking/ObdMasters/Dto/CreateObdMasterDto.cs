@@ -1,9 +1,6 @@
-﻿using Abp.Authorization.Roles;
-using Abp.AutoMapper;
+﻿using Abp.AutoMapper;
 using System.ComponentModel.DataAnnotations;
-using TrackingSystem.Authorization.Roles;
 using TrackingSystem.Tracking.Obd;
-using static TrackingSystem.Tracking.Obd.ObdMaster;
 
 namespace TrackingSystem.Tracking.ObdMasters.Dto
 {
@@ -29,9 +26,9 @@ namespace TrackingSystem.Tracking.ObdMasters.Dto
         public string Description { get; set; }
 
         [Required]
-        public ObdType Type { get; set; }
+        public string Type { get; set; }
         [Required]
-        public ObdProtocol Protocol { get; set; }
+        public string Protocol { get; set; }
         [Required]
         public bool IsActive { get; set; }
     }

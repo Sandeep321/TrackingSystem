@@ -24,16 +24,17 @@ namespace TrackingSystem.Tracking.Tasks.Service
 
         public async Task<ObdMaster> Create(CreateObdMasterDto input)
         {
-            var task = ObjectMapper.Map<ObdMaster>(input);
-            task.CreatorUserId = task.LastModifierUserId = AbpSession.UserId.Value;
-            return await _obdRepository.InsertAsync(task);
+            var obdMaster = ObjectMapper.Map<ObdMaster>(input);
+            obdMaster.CreatorUserId = obdMaster.LastModifierUserId = AbpSession.UserId.Value;
+            return await _obdRepository.InsertAsync(obdMaster);
         }
 
         public async Task<ListResultDto<ObdMaster>> GetAll(GetAllObdMasterInput input)
         {
             var tasks = await _obdRepository
                 .GetAll()
-                .WhereIf(input.Type.HasValue, t => t.Type == input.Type.Value)
+                .WhereIf(!string.IsNullOrEmpty(input.Type), t => t.Type == input.Type)
+                .WhereIf(!string.IsNullOrEmpty(input.Protocol), t => t.Protocol == input.Protocol)
                 .OrderByDescending(t => t.CreationTime)
                 .ToListAsync();
 

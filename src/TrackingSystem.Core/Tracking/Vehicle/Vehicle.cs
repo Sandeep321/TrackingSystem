@@ -7,63 +7,69 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrackingSystem.Tracking.Obd
 {
-    [Table("ObdMaster")]
-    public class ObdMaster : FullAuditedEntity<int>, IMayHaveTenant, IPassivable, ICreationAudited
+    [Table("Vehicles")]
+    public class Vehicle : FullAuditedEntity<int>, IMayHaveTenant, IPassivable, ICreationAudited
     {
         public const int NumbersLimit = 50;
         public const int MaxDescriptionLength = 64 * 1024; //64KB
 
         [Required]
         [MaxLength(NumbersLimit)]
-        public string ObdNumber { get; set; }
+        public string VehicleNumber { get; set; }
 
         [Required]
         [MaxLength(NumbersLimit)]
-        public string SimImeiNumber { get; set; }
+        public string Model { get; set; }
 
         [Required]
         [MaxLength(NumbersLimit)]
-        public string SimNumber { get; set; }
+        public string EngineNumber { get; set; }
+
+        [Required]
+        [MaxLength(NumbersLimit)]
+        public string ChassisNumber { get; set; }
+
+        [Required]
+        [MaxLength(MaxDescriptionLength)]
+        public string Company { get; set; }
+
+        [Required]
+        [MaxLength(NumbersLimit)]
+        public string Color { get; set; }
+
+        [Required]
+        public DateTime RegistrationDate { get; set; }
+        public DateTime LastRepairedOn { get; set; }
+        public DateTime LastConnectedOn { get; set; }
 
         [MaxLength(MaxDescriptionLength)]
         public string Description { get; set; }
 
         [Required]
         public string Type { get; set; }
-        [Required]
-        public string Protocol { get; set; }
         public int? TenantId { get; set; }
         [Required]
         public bool IsActive { get; set; }
-        public ObdMaster()
+        public Vehicle()
         {
             CreationTime = DateTime.Now;
             LastModificationTime = DateTime.Now;
             Type = null;
             IsActive = true;
-            Protocol = null;
             TenantId = null;
         }
 
-        protected ObdMaster(int? tenantId)
+        protected Vehicle(int? tenantId)
             : this()
         {
             TenantId = tenantId;
         }
-        //// TODO Can add other Odb Types
-        //public enum ObdType
+        // TODO Can add other Odb Types
+        //public enum VehicleType
         //{
         //    Default = 0,
         //    Type1 = 1,
         //    Type2 = 2
-        //}
-
-        //// TODO Can add other Odb Protocols
-        //public enum ObdProtocol
-        //{
-        //    Default = 0,
-        //    Type1 = 1,
-        //    Type2 = 2
-        //}
-    }    
+        //}        
+    }
 }

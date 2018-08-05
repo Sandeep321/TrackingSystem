@@ -10,8 +10,8 @@ using TrackingSystem.EntityFrameworkCore;
 namespace TrackingSystem.Migrations
 {
     [DbContext(typeof(TrackingSystemDbContext))]
-    [Migration("20180804120525_Added ObdMaster Table")]
-    partial class AddedObdMasterTable
+    [Migration("20180805132012_Updated IsActive to Required")]
+    partial class UpdatedIsActivetoRequired
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1087,7 +1087,8 @@ namespace TrackingSystem.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("Protocol");
+                    b.Property<string>("Protocol")
+                        .IsRequired();
 
                     b.Property<string>("SimImeiNumber")
                         .IsRequired()
@@ -1099,11 +1100,77 @@ namespace TrackingSystem.Migrations
 
                     b.Property<int?>("TenantId");
 
-                    b.Property<int>("Type");
+                    b.Property<string>("Type")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
                     b.ToTable("ObdMaster");
+                });
+
+            modelBuilder.Entity("TrackingSystem.Tracking.Obd.Vehicle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ChassisNumber")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasMaxLength(65536);
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<long?>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(65536);
+
+                    b.Property<string>("EngineNumber")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime>("LastConnectedOn");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<DateTime>("LastRepairedOn");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("RegistrationDate");
+
+                    b.Property<int?>("TenantId");
+
+                    b.Property<string>("Type")
+                        .IsRequired();
+
+                    b.Property<string>("VehicleNumber")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>

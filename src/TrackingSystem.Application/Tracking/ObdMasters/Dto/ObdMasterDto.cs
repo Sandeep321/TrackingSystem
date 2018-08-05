@@ -28,9 +28,9 @@ namespace TrackingSystem.Tracking.Tasks.Dto
         public string Description { get; set; }
 
         [Required]
-        public ObdType Type { get; set; }
+        public string Type { get; set; }
         [Required]
-        public ObdProtocol Protocol { get; set; }
+        public string Protocol { get; set; }
         [Required]
         public bool IsActive { get; set; }
     }   
