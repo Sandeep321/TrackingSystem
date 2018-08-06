@@ -26,6 +26,7 @@ namespace TrackingSystem.Tracking.Tasks.Service
         {
             var vehicle = ObjectMapper.Map<VehicleData>(input);
             vehicle.CreatorUserId = vehicle.LastModifierUserId = AbpSession.UserId.Value;
+            vehicle.TenantId = AbpSession.TenantId.Value;
             return await Repository.InsertAsync(vehicle);
         }
 

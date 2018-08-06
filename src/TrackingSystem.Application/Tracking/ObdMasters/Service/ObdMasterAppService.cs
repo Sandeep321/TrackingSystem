@@ -26,6 +26,7 @@ namespace TrackingSystem.Tracking.Tasks.Service
         {
             var obdMaster = ObjectMapper.Map<ObdMaster>(input);
             obdMaster.CreatorUserId = obdMaster.LastModifierUserId = AbpSession.UserId.Value;
+            obdMaster.TenantId = AbpSession.TenantId.Value;
             return await _obdRepository.InsertAsync(obdMaster);
         }
 
