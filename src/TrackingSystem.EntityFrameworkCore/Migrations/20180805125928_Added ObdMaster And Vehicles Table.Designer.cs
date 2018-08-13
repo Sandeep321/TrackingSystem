@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackingSystem.EntityFrameworkCore;
 
 namespace TrackingSystem.Migrations
 {
     [DbContext(typeof(TrackingSystemDbContext))]
-    partial class TrackingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180805125928_Added ObdMaster And Vehicles Table")]
+    partial class AddedObdMasterAndVehiclesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1085,8 +1087,7 @@ namespace TrackingSystem.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Protocol")
-                        .IsRequired();
+                    b.Property<string>("Protocol");
 
                     b.Property<string>("SimImeiNumber")
                         .IsRequired()
@@ -1098,8 +1099,7 @@ namespace TrackingSystem.Migrations
 
                     b.Property<int?>("TenantId");
 
-                    b.Property<string>("Type")
-                        .IsRequired();
+                    b.Property<string>("Type");
 
                     b.HasKey("Id");
 
@@ -1159,8 +1159,7 @@ namespace TrackingSystem.Migrations
 
                     b.Property<int?>("TenantId");
 
-                    b.Property<string>("Type")
-                        .IsRequired();
+                    b.Property<string>("Type");
 
                     b.Property<string>("VehicleNumber")
                         .IsRequired()
@@ -1169,87 +1168,6 @@ namespace TrackingSystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vehicles");
-                });
-
-            modelBuilder.Entity("TrackingSystem.Tracking.Obd.VehicleData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ACStatus");
-
-                    b.Property<string>("Accelerator");
-
-                    b.Property<string>("AlarmStatus");
-
-                    b.Property<string>("Altitude");
-
-                    b.Property<string>("Angle");
-
-                    b.Property<DateTime>("CreationTime");
-
-                    b.Property<long?>("CreatorUserId");
-
-                    b.Property<long?>("DeleterUserId");
-
-                    b.Property<DateTime?>("DeletionTime");
-
-                    b.Property<string>("EngineStatus");
-
-                    b.Property<string>("FuelLevel");
-
-                    b.Property<string>("FuelStatus");
-
-                    b.Property<string>("Ignition");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<DateTime?>("LastModificationTime");
-
-                    b.Property<long?>("LastModifierUserId");
-
-                    b.Property<string>("Load");
-
-                    b.Property<string>("MainBattrey");
-
-                    b.Property<string>("ObdNumber")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("ObdSimImeiNumber")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Odometer");
-
-                    b.Property<string>("Plate");
-
-                    b.Property<string>("Position");
-
-                    b.Property<string>("Rpm");
-
-                    b.Property<string>("RunTime");
-
-                    b.Property<string>("Speed");
-
-                    b.Property<string>("Temprature");
-
-                    b.Property<int?>("TenantId");
-
-                    b.Property<string>("VehicleEngineNumber")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("VehicleNumber")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("VehicleData");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>

@@ -4,6 +4,7 @@ namespace TrackingSystem.Tracking.Tasks.Dto
 {
     public class GetAllObdMasterInput
     {
-        public ObdType? Type { get; set; }
+        public string Type { get; set; }
+        public string Protocol { get; set; }
     }
 }

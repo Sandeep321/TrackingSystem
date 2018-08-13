@@ -13,6 +13,8 @@ namespace TrackingSystem.EntityFrameworkCore
     {
         /* Define a DbSet for each entity of the application */
         public DbSet<ObdMaster> ObdMaster { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<VehicleData> VehicleData { get; set; }
         public TrackingSystemDbContext(DbContextOptions<TrackingSystemDbContext> options)
             : base(options)
         {
