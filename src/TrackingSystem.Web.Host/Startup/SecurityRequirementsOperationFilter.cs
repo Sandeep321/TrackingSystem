@@ -10,11 +10,35 @@ namespace TrackingSystem.Web.Host.Startup
     {
         public void Apply(Operation operation, OperationFilterContext context)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             var actionAttrs = context.ApiDescription.ActionAttributes();
+#pragma warning restore CS0618 // Type or member is obsolete
             if (actionAttrs.OfType<AbpAllowAnonymousAttribute>().Any())
             {
                 return;
             }
+
+            if (operation.Parameters == null)
+                operation.Parameters = new List<IParameter>();
+            // Added Tenant Id in swagger header
+            operation.Parameters.Add(new BodyParameter
+            {
+                Name = "Abp.TenantId",
+                In = "header",
+                // Description = "Tenant Id to work with",
+                // Schema = new Schema { Type = "integer" },
+                Required = false
+            });
+
+            //operation.Parameters.Add(new BodyParameter
+            //{
+            //    Name = "Authorization",
+            //    In = "formData",
+            //    //Description = "Tenant Id to work with",
+            //    Schema = new Schema { Type = "string" },
+            //    Required = false
+            //});
+
 
             var controllerAttrs = context.ApiDescription.ControllerAttributes();
             var actionAbpAuthorizeAttrs = actionAttrs.OfType<AbpAuthorizeAttribute>();

@@ -52,6 +52,9 @@ namespace TrackingSystem.Controllers
         [HttpPost]
         public async Task<AuthenticateResultModel> Authenticate([FromBody] AuthenticateModel model)
         {
+            //Below can be used to use a specific tenantId for time being
+            //using (AbpSession.Use(model.TenantId, null))
+
             var loginResult = await GetLoginResultAsync(
                 model.UserNameOrEmailAddress,
                 model.Password,
